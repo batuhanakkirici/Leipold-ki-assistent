@@ -1,3 +1,5 @@
+cd
+cat > app.py << 'EOF'
 import streamlit as st
 from openai import OpenAI
 import json
@@ -93,9 +95,6 @@ client = OpenAI(api_key=api_key)
 
 MAX_HISTORY_MESSAGES = 10
 
-# ==========================================
-# TAGES-LIMIT gegen Kostenexplosion
-# ==========================================
 DAILY_MESSAGE_LIMIT = 200  # <- hier anpassen, je nach Budget
 USAGE_FILE = Path(".streamlit/usage.json")
 
@@ -122,6 +121,48 @@ def increment_daily_usage():
 usage = get_daily_usage()
 limit_reached = usage["count"] >= DAILY_MESSAGE_LIMIT
 
+IMPRESSUM_TEXT = """
+**Angaben gemäß § 5 DDG**
+
+Carl Leipold GmbH
+Schiltacher Str. 5
+77709 Wolfach
+Deutschland
+
+Telefon: +49 (0)7834 8395-0
+Telefax: +49 (0)7834 8395-55
+E-Mail: info@leipold.com
+Web: www.leipold.com
+
+Geschäftsführer: Dipl.-Ing. Pascal Schiefer, Dipl.-Betriebsw. (FH) Thomas Fees
+Registergericht: Amtsgericht Freiburg i.Br.
+Handelsregisternummer: HRB 680399
+Umsatzsteuer-ID: DE 811655017
+
+Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: [Name einer verantwortlichen Person bei Leipold einsetzen]
+"""
+
+DATENSCHUTZ_TEXT = """
+**Datenschutzhinweis zum KI-Assistenten**
+
+Verantwortlicher im Sinne der DSGVO ist die Carl Leipold GmbH (Kontaktdaten siehe Impressum).
+
+**Welche Daten werden verarbeitet?**
+Ihre Eingaben in diesem Chat werden zur Erzeugung einer Antwort an den KI-Dienstleister OpenAI, L.L.C. (USA) übermittelt. Es werden keine Nachrichten dauerhaft in einer Datenbank von Leipold gespeichert; der Gesprächsverlauf besteht nur für die Dauer Ihrer Sitzung.
+
+**Zweck & Rechtsgrundlage**
+Die Verarbeitung erfolgt auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO) an einer effizienten, jederzeit erreichbaren Beantwortung allgemeiner Anfragen zu Produkten, Ausbildung und Standorten.
+
+**Übermittlung in Drittländer**
+Da OpenAI in den USA ansässig ist, findet eine Datenübermittlung in ein Drittland statt. Diese erfolgt auf Grundlage der EU-Standardvertragsklauseln mit OpenAI.
+
+**Ihre Rechte**
+Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung sowie ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde. Wenden Sie sich dazu an: info@leipold.com
+
+**Hinweis zur KI-Nutzung**
+Sie kommunizieren mit einem automatisierten KI-System, keinem Menschen (siehe Hinweis im Chat oben).
+"""
+
 with st.sidebar:
     try:
         st.image("logo.png", width=180)
@@ -146,9 +187,6 @@ with st.sidebar:
 st.title("⚙️ Leipold KI-Assistent")
 st.caption("Ihr intelligenter Ansprechpartner für Präzisionsteile & Karriere")
 
-# ==========================================
-# KI-KENNZEICHNUNG (Pflicht ab 2. August 2026, EU AI Act Art. 50)
-# ==========================================
 st.info(
     "🤖 Hinweis: Sie chatten hier mit einem automatisierten KI-System, "
     "keinem Menschen. Für persönliche Anliegen erreichen Sie unser Team "
@@ -237,3 +275,10 @@ if prompt:
             st.caption(f"Debug-Info: {e}")
 
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
+st.markdown("---")
+with st.expander("📄 Impressum & Datenschutz"):
+    st.markdown(IMPRESSUM_TEXT)
+    st.markdown("---")
+    st.markdown(DATENSCHUTZ_TEXT)
+EOF
