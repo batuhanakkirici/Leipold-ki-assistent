@@ -1,5 +1,3 @@
-cd
-cat > app.py << 'EOF'
 import streamlit as st
 from openai import OpenAI
 import json
@@ -95,7 +93,7 @@ client = OpenAI(api_key=api_key)
 
 MAX_HISTORY_MESSAGES = 10
 
-DAILY_MESSAGE_LIMIT = 200  # <- hier anpassen, je nach Budget
+DAILY_MESSAGE_LIMIT = 200
 USAGE_FILE = Path(".streamlit/usage.json")
 
 def get_daily_usage():
@@ -281,4 +279,3 @@ with st.expander("📄 Impressum & Datenschutz"):
     st.markdown(IMPRESSUM_TEXT)
     st.markdown("---")
     st.markdown(DATENSCHUTZ_TEXT)
-EOF
