@@ -14,7 +14,7 @@ st.set_page_config(
 st.markdown("""
 <style>
     .stApp, [data-testid="stAppViewContainer"] {
-        background-color: #dbe4f0 !important;
+        background: linear-gradient(180deg, #dbe4f0 0%, #eef3fa 100%) !important;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
     h1 {
@@ -75,6 +75,27 @@ st.markdown("""
         color: #0f172a !important;
         font-size: 15px;
         line-height: 1.6;
+    }
+    [data-testid="stExpander"] {
+        background-color: #f5f8fc !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px;
+    }
+    [data-testid="stExpander"] summary,
+    [data-testid="stExpander"] summary p,
+    [data-testid="stExpander"] p,
+    [data-testid="stExpander"] li,
+    [data-testid="stExpander"] strong,
+    [data-testid="stExpander"] div,
+    [data-testid="stExpander"] span {
+        color: #0f172a !important;
+    }
+    .sidebar-accent-header {
+        background: linear-gradient(135deg, #0891b2 0%, #0369a1 100%);
+        border-radius: 10px;
+        padding: 14px;
+        margin-bottom: 16px;
+        text-align: center;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -162,10 +183,16 @@ Sie kommunizieren mit einem automatisierten KI-System, keinem Menschen (siehe Hi
 """
 
 with st.sidebar:
+    st.markdown(
+        '<div class="sidebar-accent-header">'
+        '<span style="color:white; font-weight:700; font-size:16px;">⚙️ LEIPOLD GRUPPE</span>'
+        '</div>',
+        unsafe_allow_html=True
+    )
     try:
         st.image("logo.png", width=180)
     except Exception:
-        st.markdown("### ⚙️ LEIPOLD GRUPPE")
+        pass
 
     st.markdown("""
     **Willkommen bei Leipold!**
