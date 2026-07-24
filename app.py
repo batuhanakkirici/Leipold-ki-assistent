@@ -97,6 +97,19 @@ st.markdown("""
         margin-bottom: 16px;
         text-align: center;
     }
+    [data-testid="stChatInput"] {
+        background-color: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+    }
+    [data-testid="stChatInput"] textarea {
+        color: #0f172a !important;
+        background-color: #ffffff !important;
+    }
+    [data-testid="stChatInput"] textarea::placeholder {
+        color: #64748b !important;
+        opacity: 1 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
