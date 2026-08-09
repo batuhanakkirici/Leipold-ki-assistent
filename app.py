@@ -14,13 +14,36 @@ st.set_page_config(
 st.markdown("""
 <style>
     .stApp, [data-testid="stAppViewContainer"] {
-        background: linear-gradient(180deg, #dbe4f0 0%, #eef3fa 100%) !important;
+        background: #0b3c6b !important;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
+    [data-testid="stHeader"],
+    [data-testid="stToolbar"],
+    header[data-testid="stHeader"] {
+        background: #0b3c6b !important;
+        color: #e8f5fd !important;
+    }
+    [data-testid="stHeader"] * ,
+    [data-testid="stToolbar"] * {
+        color: #e8f5fd !important;
+    }
+    [data-testid="stDecoration"] {
+        display: none !important;
+    }
+    [data-testid="stBottom"],
+    [data-testid="stBottom"] > div,
+    [data-testid="stBottomBlockContainer"] {
+        background: #0b3c6b !important;
+        border-top: none !important;
+    }
     h1 {
-        color: #0f172a !important;
+        color: #ffffff !important;
         font-weight: 800 !important;
         letter-spacing: -0.5px;
+    }
+    [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"],
+    [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] * {
+        color: #a8cbe8 !important;
     }
     [data-testid="stSidebar"] {
         background-color: #0f172a;
@@ -40,46 +63,51 @@ st.markdown("""
         border-color: #475569 !important;
     }
     div.stButton > button {
-        background-color: #ffffff;
-        color: #0369a1;
-        border: 1px solid #bae6fd;
-        border-radius: 8px;
+        background-color: #0f4a80;
+        color: #7cc4f5;
+        border: 1px solid #2a9deb;
+        border-radius: 4px;
         padding: 0.6rem 1rem;
         font-weight: 600;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        box-shadow: none;
         transition: all 0.2s ease-in-out;
         width: 100%;
     }
     div.stButton > button:hover {
-        background-color: #0369a1;
+        background-color: #2a9deb;
         color: #ffffff;
-        border-color: #0369a1;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-color: #2a9deb;
+        box-shadow: 0 2px 8px rgba(42,157,235,0.35);
     }
     .stChatMessage, [data-testid="stChatMessage"] {
-        background-color: #f5f8fc !important;
-        color: #0f172a !important;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        background-color: #0f4a80 !important;
+        color: #e8f5fd !important;
+        border: 1px solid #1d5c96;
+        border-radius: 4px;
+        box-shadow: none;
         padding: 1rem 1.5rem;
     }
     [data-testid="stChatMessageContent"] {
-        color: #0f172a !important;
+        color: #e8f5fd !important;
     }
     [data-testid="stChatMessageContent"] * {
-        color: #0f172a !important;
+        color: #e8f5fd !important;
     }
     .stChatMessage p {
-        color: #0f172a !important;
+        color: #e8f5fd !important;
         font-size: 15px;
         line-height: 1.6;
     }
+    .stChatMessage strong,
+    [data-testid="stChatMessageContent"] strong,
+    [data-testid="stChatMessageContent"] b {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
     [data-testid="stExpander"] {
-        background-color: #f5f8fc !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 8px;
+        background-color: #0f4a80 !important;
+        border: 1px solid #1d5c96 !important;
+        border-radius: 4px;
     }
     [data-testid="stExpander"] summary,
     [data-testid="stExpander"] summary p,
@@ -88,36 +116,57 @@ st.markdown("""
     [data-testid="stExpander"] strong,
     [data-testid="stExpander"] div,
     [data-testid="stExpander"] span {
-        color: #0f172a !important;
+        color: #e8f5fd !important;
+    }
+    [data-testid="stAlert"] {
+        background-color: #0f4a80 !important;
+        border: 1px solid #2a9deb !important;
+        border-radius: 4px !important;
+    }
+    [data-testid="stAlert"] * {
+        color: #e8f5fd !important;
     }
     .sidebar-accent-header {
-        background: linear-gradient(135deg, #0891b2 0%, #0369a1 100%);
-        border-radius: 10px;
+        background: #2a9deb;
+        border-radius: 4px;
         padding: 14px;
         margin-bottom: 16px;
         text-align: center;
     }
-    [data-testid="stChatInput"] {
-        background-color: #ffffff !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 12px !important;
+    [data-testid="stChatInput"],
+    [data-testid="stChatInputContainer"],
+    [data-testid="stChatInput"] > div,
+    [data-testid="stChatInput"] div[data-baseweb="textarea"],
+    [data-testid="stChatInput"] div[data-baseweb="base-input"] {
+        background-color: #0f4a80 !important;
+        border-color: #1d5c96 !important;
+        border-radius: 4px !important;
     }
     [data-testid="stChatInput"] textarea {
-        color: #0f172a !important;
-        background-color: #ffffff !important;
+        color: #e8f5fd !important;
+        background-color: #0f4a80 !important;
     }
     [data-testid="stChatInput"] textarea::placeholder {
-        color: #64748b !important;
+        color: #a8cbe8 !important;
         opacity: 1 !important;
     }
-    [data-testid="stBottomBlockContainer"] {
-        background: linear-gradient(180deg, #dbe4f0 0%, #eef3fa 100%) !important;
-        border-top: 1px solid #cbd5e1;
+    [data-testid="stChatInput"] button {
+        background-color: #2a9deb !important;
+        border: none !important;
+    }
+    [data-testid="stChatInput"] button svg {
+        fill: #ffffff !important;
+        color: #ffffff !important;
+    }
+    [data-testid="stAppViewContainer"] hr {
+        border-color: #1d5c96 !important;
     }
     [data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] p,
-    [data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] li,
+    [data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] li {
+        color: #e8f5fd !important;
+    }
     [data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] strong {
-        color: #0f172a !important;
+        color: #ffffff !important;
     }
     [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
     [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] li,
