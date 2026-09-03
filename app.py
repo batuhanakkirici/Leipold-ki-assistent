@@ -21,129 +21,123 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
 
-/* Farben, Schrift und Formen stammen aus dem Stylesheet von leipold.com:
-   Navy #004180 fuer Ueberschriften, Akzentblau #2a9deb, Flaechen #e8f5fd,
-   Fliesstext #555555, Schrift Source Sans Pro. */
+/* Gemessen auf leipold.com: Fliesstext #555555 in Source Sans Pro 18px,
+   Ueberschriften #004180, Unterzeilen #2a9deb, Knoepfe navy mit Radius 20px. */
 :root{
   --navy:#004180; --navy-2:#0064a7; --accent:#2a9deb;
-  --tint:#e8f5fd; --tint-2:#f4faff;
-  --text:#555555; --muted:#7b8794; --line:#d8e6f2;
+  --tint:#e8f5fd; --tint-2:#f6fbff;
+  --text:#555555; --muted:#8a9099; --line:#e2ebf3;
   --paper:#ffffff;
 }
 
 [data-testid="stAppViewContainer"]{
   background:var(--paper);
   font-family:'Source Sans 3','Source Sans Pro',sans-serif;
-  color:var(--text);
+  color:var(--text); font-size:18px;
 }
 [data-testid="stHeader"]{ background:transparent; }
-.block-container{ padding-top:2.4rem; max-width:1060px; }
+.block-container{ padding-top:3rem; max-width:1000px; }
 
 h1,h2,h3{ color:var(--navy) !important; font-weight:700 !important;
   font-family:'Source Sans 3','Source Sans Pro',sans-serif !important; }
 p,li,span,div{ color:var(--text); }
 
-/* Kopfbereich */
-.lp-eyebrow{
-  font-size:13px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
-  color:var(--accent); display:flex; align-items:center; gap:10px; margin-bottom:10px;
-}
-.lp-eyebrow::before{ content:""; width:24px; height:2px; background:var(--accent); }
+/* ── Kopf: grosse Ueberschrift, darunter die blaue Unterzeile ──── */
 .lp-title{
-  font-weight:700; font-size:clamp(28px,3.6vw,40px); line-height:1.12;
+  font-weight:700; font-size:clamp(32px,4vw,40px); line-height:1.15;
   color:var(--navy); margin:0;
 }
-.lp-title em{ font-style:normal; color:var(--accent); }
-.lp-sub{ color:var(--text); font-size:17px; line-height:1.6; margin:14px 0 0; max-width:62ch; }
-.lp-rule{ height:3px; width:78px; margin:20px 0 0; background:var(--accent); }
+.lp-lead{
+  color:var(--accent); font-weight:600; font-size:clamp(21px,2.3vw,24px);
+  line-height:1.35; margin:10px 0 0; max-width:44ch;
+}
+.lp-sub{ color:var(--text); font-size:18px; line-height:1.6; margin:18px 0 0; max-width:60ch; }
 
-/* Statuszeile */
+/* ── Statuszeile ──────────────────────────────────────────────── */
 .lp-status{
   display:inline-flex; align-items:center; gap:9px;
-  font-size:13px; font-weight:600; color:var(--navy-2);
-  background:var(--tint); border:1px solid var(--line);
-  border-radius:999px; padding:7px 16px;
+  font-size:15px; font-weight:600; color:var(--navy);
+  background:var(--tint); border-radius:20px; padding:7px 20px;
 }
 .lp-dot{ width:8px; height:8px; border-radius:50%; background:#22a06b;
   box-shadow:0 0 0 0 rgba(34,160,107,.55); animation:lp-pulse 2.6s ease-out infinite; }
 @keyframes lp-pulse{ 70%{box-shadow:0 0 0 9px rgba(34,160,107,0);} 100%{box-shadow:0 0 0 0 rgba(34,160,107,0);} }
 
-/* Hinweise */
-[data-testid="stAlert"]{
-  background:var(--tint) !important; border:1px solid var(--line) !important;
-  border-left:4px solid var(--accent) !important; border-radius:6px !important;
+.lp-label{
+  color:var(--accent); font-weight:600; font-size:20px; margin:0 0 4px;
 }
-[data-testid="stAlert"] p{ color:var(--navy) !important; font-size:15px; }
 
-/* Vorschlags-Knoepfe im Stil ihrer Buttons */
+/* ── Hinweise ─────────────────────────────────────────────────── */
+[data-testid="stAlert"]{
+  background:var(--tint) !important; border:0 !important;
+  border-radius:8px !important;
+}
+[data-testid="stAlert"] p{ color:var(--navy) !important; font-size:17px; }
+
+/* ── Knoepfe: ihre Pillenform, navy gefuellt ──────────────────── */
 div.stButton > button{
-  width:100%; text-align:left;
+  width:100%; text-align:center;
   background:var(--paper) !important; color:var(--navy) !important;
-  border:1.5px solid var(--line) !important; border-radius:4px !important;
-  padding:12px 18px !important;
+  border:2px solid var(--navy) !important; border-radius:20px !important;
+  padding:9px 22px !important; min-height:44px;
   font-family:'Source Sans 3','Source Sans Pro',sans-serif !important;
-  font-size:16px !important; font-weight:600 !important;
-  transition:background .18s ease, border-color .18s ease, color .18s ease;
+  font-size:17px !important; font-weight:600 !important;
+  transition:background .18s ease, color .18s ease, border-color .18s ease;
   box-shadow:none !important;
 }
 div.stButton > button:hover{
-  background:var(--accent) !important; border-color:var(--accent) !important;
+  background:var(--navy) !important; border-color:var(--navy) !important;
   color:#ffffff !important;
 }
-div.stButton > button:disabled{ opacity:.45; }
+div.stButton > button:disabled{ opacity:.4; }
 
-/* Chatblasen */
+/* ── Chatblasen ───────────────────────────────────────────────── */
 [data-testid="stChatMessage"]{
-  background:var(--tint-2) !important; border:1px solid var(--line);
-  border-radius:6px; padding:16px 20px !important; margin-bottom:12px;
+  background:var(--tint-2) !important; border:0;
+  border-radius:10px; padding:20px 24px !important; margin-bottom:14px;
   animation:lp-in .3s ease both;
 }
 @keyframes lp-in{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]){
-  background:var(--tint) !important; border-color:#bcdcf5;
+  background:var(--tint) !important;
 }
 [data-testid="stChatMessageContent"], [data-testid="stChatMessageContent"] *{
-  color:var(--text) !important; font-size:16px; line-height:1.62;
+  color:var(--text) !important; font-size:18px; line-height:1.6;
 }
 [data-testid="stChatMessageContent"] strong{ color:var(--navy) !important; }
 [data-testid="stChatMessageContent"] h1,
 [data-testid="stChatMessageContent"] h2,
-[data-testid="stChatMessageContent"] h3{ color:var(--navy) !important; }
+[data-testid="stChatMessageContent"] h3{ color:var(--accent) !important; font-weight:600 !important; }
 
-/* Eingabe */
+/* ── Eingabe ──────────────────────────────────────────────────── */
 [data-testid="stChatInput"]{
-  background:var(--paper) !important; border:1.5px solid var(--line) !important;
-  border-radius:4px !important;
+  background:var(--paper) !important; border:2px solid var(--line) !important;
+  border-radius:20px !important;
 }
-[data-testid="stChatInput"]:focus-within{
-  border-color:var(--accent) !important; box-shadow:0 0 0 3px rgba(42,157,235,.16) !important;
-}
-[data-testid="stChatInput"] textarea{ color:var(--text) !important; font-size:16px !important; }
+[data-testid="stChatInput"]:focus-within{ border-color:var(--accent) !important; }
+[data-testid="stChatInput"] textarea{ color:var(--text) !important; font-size:18px !important; }
 [data-testid="stBottom"] > div{ background:var(--paper) !important; }
-[data-testid="stBottomBlockContainer"]{ background:var(--paper) !important; padding-bottom:1.2rem; }
+[data-testid="stBottomBlockContainer"]{ background:var(--paper) !important; padding-bottom:1.4rem; }
 
-/* Seitenleiste */
-[data-testid="stSidebar"]{ background:var(--tint-2); border-right:1px solid var(--line); }
+/* ── Seitenleiste ─────────────────────────────────────────────── */
+[data-testid="stSidebar"]{ background:var(--paper); border-right:1px solid var(--line); }
 [data-testid="stSidebar"] *{ color:var(--text); }
 .lp-side-label{
-  font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--accent); margin:24px 0 8px;
+  color:var(--accent); font-weight:600; font-size:19px; margin:26px 0 8px;
 }
 .lp-side-list{ list-style:none; padding:0; margin:0; }
-.lp-side-list li{ font-size:15px; color:var(--text); padding:6px 0 6px 14px;
-  border-left:2px solid var(--line); }
-.lp-contact{ font-size:14px; line-height:1.9; color:var(--text); }
-.lp-contact a{ color:var(--navy-2) !important; text-decoration:none; font-weight:600; }
+.lp-side-list li{ font-size:17px; color:var(--text); padding:5px 0; }
+.lp-contact{ font-size:17px; line-height:1.7; color:var(--text); }
+.lp-contact a{ color:var(--navy) !important; text-decoration:none; font-weight:600; }
 .lp-contact a:hover{ color:var(--accent) !important; }
-.lp-contact .k{ color:var(--muted); font-size:12.5px; }
-[data-testid="stSidebar"] div.stButton > button{ text-align:center; font-size:15px !important; }
+.lp-contact .k{ color:var(--muted); font-size:15px; }
 
-/* Kleinkram */
+/* ── Kleinkram ────────────────────────────────────────────────── */
 [data-testid="stExpander"]{
   background:var(--paper) !important; border:1px solid var(--line) !important;
-  border-radius:6px !important;
+  border-radius:10px !important;
 }
-[data-testid="stExpander"] summary{ color:var(--navy) !important; font-size:16px !important; font-weight:600; }
+[data-testid="stExpander"] summary{ color:var(--navy) !important; font-size:17px !important; font-weight:600; }
 hr{ border-color:var(--line) !important; }
 #MainMenu, footer{ visibility:hidden; }
 
@@ -323,11 +317,11 @@ with st.sidebar:
 # ═══════════════════════════════════════════════════════════════════
 
 st.markdown(
-    '<div class="lp-eyebrow">Carl Leipold GmbH · Wolfach</div>'
-    '<h1 class="lp-title">Fragen Sie uns —<br><em>rund um die Uhr.</em></h1>'
-    '<p class="lp-sub">Ihr Ansprechpartner für Präzisionsdrehteile, Zerspanungstechnik '
-    'und Karriere bei Leipold. Antwort in Sekunden, auch nachts und am Wochenende.</p>'
-    '<div class="lp-rule"></div>',
+    '<h1 class="lp-title">Fragen Sie uns.</h1>'
+    '<p class="lp-lead">Ihr Ansprechpartner für Präzisionsteile und Karriere — rund um die Uhr.</p>'
+    '<p class="lp-sub">Stellen Sie Ihre Frage zu unseren Drehteilen, zur Fertigung oder zu '
+    'Ausbildung und Einstieg bei der Carl Leipold GmbH in Wolfach. Sie bekommen sofort '
+    'eine Antwort, auch abends und am Wochenende.</p>',
     unsafe_allow_html=True,
 )
 
@@ -365,7 +359,7 @@ VORSCHLAEGE = [
 ]
 
 st.markdown(
-    '<div class="lp-eyebrow" style="margin-top:6px;">Häufig gefragt</div>',
+    '<p class="lp-label">Häufig gefragt</p>',
     unsafe_allow_html=True,
 )
 
