@@ -21,124 +21,128 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
 
-/* Gemessen auf leipold.com: Fliesstext #555555 in Source Sans Pro 18px,
-   Ueberschriften #004180, Unterzeilen #2a9deb, Knoepfe navy mit Radius 20px. */
+/* Der Verlauf stammt eins zu eins aus dem .main-content von leipold.com.
+   Darauf weisse Schrift, Akzentblau #2a9deb, Knoepfe navy mit Radius 20px. */
 :root{
-  --navy:#004180; --navy-2:#0064a7; --accent:#2a9deb;
-  --tint:#e8f5fd; --tint-2:#f6fbff;
-  --text:#555555; --muted:#8a9099; --line:#e2ebf3;
-  --paper:#ffffff;
+  --g1:#084B84; --g2:#1D2443; --g3:#0E508D; --g4:#13182D;
+  --navy:#004180; --accent:#2a9deb; --accent-hell:#6ec1f5;
+  --weiss:#ffffff; --text:rgba(255,255,255,.88); --leise:rgba(255,255,255,.62);
+  --glas:rgba(255,255,255,.07); --glas-2:rgba(255,255,255,.12);
+  --kante:rgba(255,255,255,.16);
 }
 
 [data-testid="stAppViewContainer"]{
-  background:var(--paper);
+  background:linear-gradient(var(--g1), var(--g2), var(--g3), var(--g4));
+  background-attachment:fixed;
   font-family:'Source Sans 3','Source Sans Pro',sans-serif;
   color:var(--text); font-size:18px;
 }
 [data-testid="stHeader"]{ background:transparent; }
 .block-container{ padding-top:3rem; max-width:1000px; }
 
-h1,h2,h3{ color:var(--navy) !important; font-weight:700 !important;
+h1,h2,h3{ color:var(--weiss) !important; font-weight:700 !important;
   font-family:'Source Sans 3','Source Sans Pro',sans-serif !important; }
 p,li,span,div{ color:var(--text); }
 
-/* ── Kopf: grosse Ueberschrift, darunter die blaue Unterzeile ──── */
+/* ── Kopf: weisse Ueberschrift, blaue Unterzeile ───────────────── */
 .lp-title{
-  font-weight:700; font-size:clamp(32px,4vw,40px); line-height:1.15;
-  color:var(--navy); margin:0;
+  font-weight:700; font-size:clamp(34px,4.4vw,44px); line-height:1.13;
+  color:var(--weiss); margin:0;
 }
 .lp-lead{
-  color:var(--accent); font-weight:600; font-size:clamp(21px,2.3vw,24px);
-  line-height:1.35; margin:10px 0 0; max-width:44ch;
+  color:var(--accent); font-weight:600; font-size:clamp(21px,2.3vw,25px);
+  line-height:1.35; margin:12px 0 0; max-width:44ch;
 }
-.lp-sub{ color:var(--text); font-size:18px; line-height:1.6; margin:18px 0 0; max-width:60ch; }
+.lp-sub{ color:var(--text); font-size:18px; line-height:1.62; margin:18px 0 0; max-width:60ch; }
+.lp-label{ color:var(--accent); font-weight:600; font-size:20px; margin:0 0 6px; }
 
 /* ── Statuszeile ──────────────────────────────────────────────── */
 .lp-status{
   display:inline-flex; align-items:center; gap:9px;
-  font-size:15px; font-weight:600; color:var(--navy);
-  background:var(--tint); border-radius:20px; padding:7px 20px;
+  font-size:15px; font-weight:600; color:var(--weiss);
+  background:var(--glas); border:1px solid var(--kante);
+  border-radius:20px; padding:7px 20px;
 }
-.lp-dot{ width:8px; height:8px; border-radius:50%; background:#22a06b;
-  box-shadow:0 0 0 0 rgba(34,160,107,.55); animation:lp-pulse 2.6s ease-out infinite; }
-@keyframes lp-pulse{ 70%{box-shadow:0 0 0 9px rgba(34,160,107,0);} 100%{box-shadow:0 0 0 0 rgba(34,160,107,0);} }
-
-.lp-label{
-  color:var(--accent); font-weight:600; font-size:20px; margin:0 0 4px;
-}
+.lp-dot{ width:8px; height:8px; border-radius:50%; background:#4ade80;
+  box-shadow:0 0 0 0 rgba(74,222,128,.6); animation:lp-pulse 2.6s ease-out infinite; }
+@keyframes lp-pulse{ 70%{box-shadow:0 0 0 9px rgba(74,222,128,0);} 100%{box-shadow:0 0 0 0 rgba(74,222,128,0);} }
 
 /* ── Hinweise ─────────────────────────────────────────────────── */
 [data-testid="stAlert"]{
-  background:var(--tint) !important; border:0 !important;
-  border-radius:8px !important;
+  background:var(--glas) !important; border:1px solid var(--kante) !important;
+  border-radius:10px !important;
 }
-[data-testid="stAlert"] p{ color:var(--navy) !important; font-size:17px; }
+[data-testid="stAlert"] p{ color:var(--weiss) !important; font-size:17px; }
 
-/* ── Knoepfe: ihre Pillenform, navy gefuellt ──────────────────── */
+/* ── Knoepfe: ihre Pillenform ─────────────────────────────────── */
 div.stButton > button{
   width:100%; text-align:center;
-  background:var(--paper) !important; color:var(--navy) !important;
-  border:2px solid var(--navy) !important; border-radius:20px !important;
-  padding:9px 22px !important; min-height:44px;
+  background:var(--navy) !important; color:var(--weiss) !important;
+  border:1px solid rgba(255,255,255,.22) !important; border-radius:20px !important;
+  padding:10px 22px !important; min-height:46px;
   font-family:'Source Sans 3','Source Sans Pro',sans-serif !important;
   font-size:17px !important; font-weight:600 !important;
-  transition:background .18s ease, color .18s ease, border-color .18s ease;
+  transition:background .18s ease, border-color .18s ease, transform .18s ease;
   box-shadow:none !important;
 }
 div.stButton > button:hover{
-  background:var(--navy) !important; border-color:var(--navy) !important;
-  color:#ffffff !important;
+  background:var(--accent) !important; border-color:var(--accent) !important;
+  color:var(--weiss) !important; transform:translateY(-1px);
 }
-div.stButton > button:disabled{ opacity:.4; }
+div.stButton > button:disabled{ opacity:.4; transform:none; }
 
 /* ── Chatblasen ───────────────────────────────────────────────── */
 [data-testid="stChatMessage"]{
-  background:var(--tint-2) !important; border:0;
-  border-radius:10px; padding:20px 24px !important; margin-bottom:14px;
+  background:var(--glas) !important; border:1px solid var(--kante);
+  border-radius:12px; padding:20px 24px !important; margin-bottom:14px;
   animation:lp-in .3s ease both;
 }
 @keyframes lp-in{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]){
-  background:var(--tint) !important;
+  background:rgba(42,157,235,.16) !important; border-color:rgba(42,157,235,.4);
 }
 [data-testid="stChatMessageContent"], [data-testid="stChatMessageContent"] *{
-  color:var(--text) !important; font-size:18px; line-height:1.6;
+  color:var(--text) !important; font-size:18px; line-height:1.62;
 }
-[data-testid="stChatMessageContent"] strong{ color:var(--navy) !important; }
+[data-testid="stChatMessageContent"] strong{ color:var(--weiss) !important; }
 [data-testid="stChatMessageContent"] h1,
 [data-testid="stChatMessageContent"] h2,
 [data-testid="stChatMessageContent"] h3{ color:var(--accent) !important; font-weight:600 !important; }
+[data-testid="stChatMessageContent"] a{ color:var(--accent-hell) !important; }
 
 /* ── Eingabe ──────────────────────────────────────────────────── */
 [data-testid="stChatInput"]{
-  background:var(--paper) !important; border:2px solid var(--line) !important;
+  background:var(--glas) !important; border:1px solid var(--kante) !important;
   border-radius:20px !important;
 }
 [data-testid="stChatInput"]:focus-within{ border-color:var(--accent) !important; }
-[data-testid="stChatInput"] textarea{ color:var(--text) !important; font-size:18px !important; }
-[data-testid="stBottom"] > div{ background:var(--paper) !important; }
-[data-testid="stBottomBlockContainer"]{ background:var(--paper) !important; padding-bottom:1.4rem; }
+[data-testid="stChatInput"] textarea{ color:var(--weiss) !important; font-size:18px !important; }
+[data-testid="stChatInput"] textarea::placeholder{ color:var(--leise) !important; }
+[data-testid="stBottom"] > div{ background:transparent !important; }
+[data-testid="stBottomBlockContainer"]{ background:transparent !important; padding-bottom:1.4rem; }
 
 /* ── Seitenleiste ─────────────────────────────────────────────── */
-[data-testid="stSidebar"]{ background:var(--paper); border-right:1px solid var(--line); }
-[data-testid="stSidebar"] *{ color:var(--text); }
-.lp-side-label{
-  color:var(--accent); font-weight:600; font-size:19px; margin:26px 0 8px;
+[data-testid="stSidebar"]{
+  background:rgba(6,14,28,.55); border-right:1px solid var(--kante);
+  backdrop-filter:blur(6px);
 }
+[data-testid="stSidebar"] *{ color:var(--text); }
+.lp-side-label{ color:var(--accent); font-weight:600; font-size:19px; margin:26px 0 8px; }
 .lp-side-list{ list-style:none; padding:0; margin:0; }
 .lp-side-list li{ font-size:17px; color:var(--text); padding:5px 0; }
 .lp-contact{ font-size:17px; line-height:1.7; color:var(--text); }
-.lp-contact a{ color:var(--navy) !important; text-decoration:none; font-weight:600; }
-.lp-contact a:hover{ color:var(--accent) !important; }
-.lp-contact .k{ color:var(--muted); font-size:15px; }
+.lp-contact a{ color:var(--accent-hell) !important; text-decoration:none; font-weight:600; }
+.lp-contact a:hover{ color:var(--weiss) !important; }
+.lp-contact .k{ color:var(--leise); font-size:15px; }
 
 /* ── Kleinkram ────────────────────────────────────────────────── */
 [data-testid="stExpander"]{
-  background:var(--paper) !important; border:1px solid var(--line) !important;
-  border-radius:10px !important;
+  background:var(--glas) !important; border:1px solid var(--kante) !important;
+  border-radius:12px !important;
 }
-[data-testid="stExpander"] summary{ color:var(--navy) !important; font-size:17px !important; font-weight:600; }
-hr{ border-color:var(--line) !important; }
+[data-testid="stExpander"] summary{ color:var(--weiss) !important; font-size:17px !important; font-weight:600; }
+[data-testid="stExpander"] p, [data-testid="stExpander"] li{ color:var(--text) !important; }
+hr{ border-color:var(--kante) !important; }
 #MainMenu, footer{ visibility:hidden; }
 
 @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } }
