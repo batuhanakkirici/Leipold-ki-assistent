@@ -13,152 +13,141 @@ st.set_page_config(
 
 # ═══════════════════════════════════════════════════════════════════
 #  Oberfläche
-#  Dunkler Stahlgrund, feines technisches Raster, Leipold-Blau als
-#  einziger lauter Ton. Bewusst wie ein Datenblatt, nicht wie ein
-#  Spielzeug.
+#  Uebernommen von leipold.com, damit der Assistent wie ein Teil ihrer
+#  Website wirkt und nicht wie ein fremdes Werkzeug.
 # ═══════════════════════════════════════════════════════════════════
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
 
+/* Farben, Schrift und Formen stammen aus dem Stylesheet von leipold.com:
+   Navy #004180 fuer Ueberschriften, Akzentblau #2a9deb, Flaechen #e8f5fd,
+   Fliesstext #555555, Schrift Source Sans Pro. */
 :root{
-  --ink:#0A1220; --panel:#111C2E; --panel-2:#16233A;
-  --line:rgba(150,190,230,.14); --line-2:rgba(150,190,230,.26);
-  --text:#E8EFF7; --muted:rgba(232,239,247,.62); --faint:rgba(232,239,247,.34);
-  --accent:#2A9DEB; --accent-hi:#6BC5FF; --accent-deep:#0F4A80;
+  --navy:#004180; --navy-2:#0064a7; --accent:#2a9deb;
+  --tint:#e8f5fd; --tint-2:#f4faff;
+  --text:#555555; --muted:#7b8794; --line:#d8e6f2;
+  --paper:#ffffff;
 }
 
-/* ── Grund mit feinem Konstruktionsraster ─────────────────────── */
 [data-testid="stAppViewContainer"]{
-  background:
-    radial-gradient(900px 500px at 82% -10%, rgba(42,157,235,.13), transparent 62%),
-    linear-gradient(rgba(150,190,230,.045) 1px, transparent 1px) 0 0 / 32px 32px,
-    linear-gradient(90deg, rgba(150,190,230,.045) 1px, transparent 1px) 0 0 / 32px 32px,
-    var(--ink);
+  background:var(--paper);
+  font-family:'Source Sans 3','Source Sans Pro',sans-serif;
   color:var(--text);
-  font-family:'Inter', system-ui, sans-serif;
 }
 [data-testid="stHeader"]{ background:transparent; }
-.block-container{ padding-top:2.2rem; max-width:1100px; }
+.block-container{ padding-top:2.4rem; max-width:1060px; }
 
-h1,h2,h3{ font-family:'Archivo', sans-serif !important; letter-spacing:-.02em; color:var(--text) !important; }
-p, li, span, div{ color:var(--text); }
+h1,h2,h3{ color:var(--navy) !important; font-weight:700 !important;
+  font-family:'Source Sans 3','Source Sans Pro',sans-serif !important; }
+p,li,span,div{ color:var(--text); }
 
-/* ── Kopfbereich ──────────────────────────────────────────────── */
+/* Kopfbereich */
 .lp-eyebrow{
-  font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:500;
-  letter-spacing:.18em; text-transform:uppercase; color:var(--accent);
-  display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  font-size:13px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--accent); display:flex; align-items:center; gap:10px; margin-bottom:10px;
 }
-.lp-eyebrow::before{ content:""; width:26px; height:1px; background:linear-gradient(90deg,transparent,var(--accent)); }
+.lp-eyebrow::before{ content:""; width:24px; height:2px; background:var(--accent); }
 .lp-title{
-  font-family:'Archivo', sans-serif; font-weight:700;
-  font-size:clamp(30px,4vw,44px); line-height:1.05; letter-spacing:-.03em;
-  margin:0; color:var(--text);
+  font-weight:700; font-size:clamp(28px,3.6vw,40px); line-height:1.12;
+  color:var(--navy); margin:0;
 }
-.lp-title em{ font-style:normal; color:var(--accent-hi); }
-.lp-sub{ color:var(--muted); font-size:15.5px; margin:12px 0 0; max-width:62ch; }
-.lp-rule{ height:2px; margin:22px 0 0; border-radius:2px;
-  background:linear-gradient(90deg,var(--accent),rgba(42,157,235,0) 62%); }
+.lp-title em{ font-style:normal; color:var(--accent); }
+.lp-sub{ color:var(--text); font-size:17px; line-height:1.6; margin:14px 0 0; max-width:62ch; }
+.lp-rule{ height:3px; width:78px; margin:20px 0 0; background:var(--accent); }
 
-/* ── Statuszeile ──────────────────────────────────────────────── */
+/* Statuszeile */
 .lp-status{
   display:inline-flex; align-items:center; gap:9px;
-  font-family:'JetBrains Mono', monospace; font-size:11px;
-  letter-spacing:.13em; text-transform:uppercase; color:var(--faint);
-  border:1px solid var(--line); border-radius:999px; padding:6px 14px;
-  background:rgba(42,157,235,.05);
+  font-size:13px; font-weight:600; color:var(--navy-2);
+  background:var(--tint); border:1px solid var(--line);
+  border-radius:999px; padding:7px 16px;
 }
-.lp-dot{ width:7px; height:7px; border-radius:50%; background:#3DD68C;
-  box-shadow:0 0 0 0 rgba(61,214,140,.6); animation:lp-pulse 2.6s ease-out infinite; }
-@keyframes lp-pulse{ 70%{box-shadow:0 0 0 9px rgba(61,214,140,0);} 100%{box-shadow:0 0 0 0 rgba(61,214,140,0);} }
+.lp-dot{ width:8px; height:8px; border-radius:50%; background:#22a06b;
+  box-shadow:0 0 0 0 rgba(34,160,107,.55); animation:lp-pulse 2.6s ease-out infinite; }
+@keyframes lp-pulse{ 70%{box-shadow:0 0 0 9px rgba(34,160,107,0);} 100%{box-shadow:0 0 0 0 rgba(34,160,107,0);} }
 
-/* ── Hinweiskasten ────────────────────────────────────────────── */
+/* Hinweise */
 [data-testid="stAlert"]{
-  background:rgba(42,157,235,.07) !important;
-  border:1px solid var(--line) !important;
-  border-left:3px solid var(--accent) !important;
-  border-radius:10px !important; color:var(--muted) !important;
+  background:var(--tint) !important; border:1px solid var(--line) !important;
+  border-left:4px solid var(--accent) !important; border-radius:6px !important;
 }
-[data-testid="stAlert"] p{ color:var(--muted) !important; font-size:14px; }
+[data-testid="stAlert"] p{ color:var(--navy) !important; font-size:15px; }
 
-/* ── Vorschlags-Chips ─────────────────────────────────────────── */
+/* Vorschlags-Knoepfe im Stil ihrer Buttons */
 div.stButton > button{
   width:100%; text-align:left;
-  background:linear-gradient(180deg,var(--panel),var(--panel-2)) !important;
-  color:var(--text) !important;
-  border:1px solid var(--line) !important; border-radius:12px !important;
-  padding:14px 16px !important;
-  font-family:'Inter',sans-serif !important; font-size:14px !important; font-weight:500 !important;
-  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-  position:relative; overflow:hidden;
+  background:var(--paper) !important; color:var(--navy) !important;
+  border:1.5px solid var(--line) !important; border-radius:4px !important;
+  padding:12px 18px !important;
+  font-family:'Source Sans 3','Source Sans Pro',sans-serif !important;
+  font-size:16px !important; font-weight:600 !important;
+  transition:background .18s ease, border-color .18s ease, color .18s ease;
+  box-shadow:none !important;
 }
 div.stButton > button:hover{
-  transform:translateY(-2px);
-  border-color:var(--accent) !important;
-  box-shadow:0 10px 26px -14px rgba(42,157,235,.85);
+  background:var(--accent) !important; border-color:var(--accent) !important;
+  color:#ffffff !important;
 }
-div.stButton > button:disabled{ opacity:.4; transform:none; }
+div.stButton > button:disabled{ opacity:.45; }
 
-/* ── Chatblasen ───────────────────────────────────────────────── */
+/* Chatblasen */
 [data-testid="stChatMessage"]{
-  background:linear-gradient(180deg,var(--panel),var(--panel-2)) !important;
-  border:1px solid var(--line); border-radius:14px;
-  padding:16px 20px !important; margin-bottom:12px;
-  animation:lp-in .35s ease both;
+  background:var(--tint-2) !important; border:1px solid var(--line);
+  border-radius:6px; padding:16px 20px !important; margin-bottom:12px;
+  animation:lp-in .3s ease both;
 }
-@keyframes lp-in{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+@keyframes lp-in{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]){
-  background:rgba(42,157,235,.10) !important; border-color:rgba(42,157,235,.34);
+  background:var(--tint) !important; border-color:#bcdcf5;
 }
 [data-testid="stChatMessageContent"], [data-testid="stChatMessageContent"] *{
-  color:var(--text) !important; font-size:15px; line-height:1.65;
+  color:var(--text) !important; font-size:16px; line-height:1.62;
 }
-[data-testid="stChatMessageContent"] strong{ color:var(--accent-hi) !important; }
+[data-testid="stChatMessageContent"] strong{ color:var(--navy) !important; }
+[data-testid="stChatMessageContent"] h1,
+[data-testid="stChatMessageContent"] h2,
+[data-testid="stChatMessageContent"] h3{ color:var(--navy) !important; }
 
-/* ── Eingabe ──────────────────────────────────────────────────── */
+/* Eingabe */
 [data-testid="stChatInput"]{
-  background:var(--panel) !important; border:1px solid var(--line-2) !important;
-  border-radius:12px !important;
+  background:var(--paper) !important; border:1.5px solid var(--line) !important;
+  border-radius:4px !important;
 }
 [data-testid="stChatInput"]:focus-within{
-  border-color:var(--accent) !important; box-shadow:0 0 0 3px rgba(42,157,235,.18) !important;
+  border-color:var(--accent) !important; box-shadow:0 0 0 3px rgba(42,157,235,.16) !important;
 }
-[data-testid="stChatInput"] textarea{ color:var(--text) !important; font-size:15px !important; }
+[data-testid="stChatInput"] textarea{ color:var(--text) !important; font-size:16px !important; }
+[data-testid="stBottom"] > div{ background:var(--paper) !important; }
+[data-testid="stBottomBlockContainer"]{ background:var(--paper) !important; padding-bottom:1.2rem; }
 
-/* ── Seitenleiste ─────────────────────────────────────────────── */
-[data-testid="stSidebar"]{ background:#080E19; border-right:1px solid var(--line); }
+/* Seitenleiste */
+[data-testid="stSidebar"]{ background:var(--tint-2); border-right:1px solid var(--line); }
 [data-testid="stSidebar"] *{ color:var(--text); }
 .lp-side-label{
-  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--accent); margin:22px 0 8px;
+  font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); margin:24px 0 8px;
 }
 .lp-side-list{ list-style:none; padding:0; margin:0; }
-.lp-side-list li{ font-size:14px; color:var(--muted); padding:5px 0 5px 14px;
-  border-left:1px solid var(--line); }
-.lp-contact{ font-family:'JetBrains Mono',monospace; font-size:12px;
-  line-height:2; color:var(--muted); }
-.lp-contact a{ color:var(--accent-hi) !important; text-decoration:none; }
-[data-testid="stSidebar"] div.stButton > button{
-  text-align:center; background:transparent !important;
-  border:1px solid var(--line-2) !important; font-size:13px !important;
+.lp-side-list li{ font-size:15px; color:var(--text); padding:6px 0 6px 14px;
+  border-left:2px solid var(--line); }
+.lp-contact{ font-size:14px; line-height:1.9; color:var(--text); }
+.lp-contact a{ color:var(--navy-2) !important; text-decoration:none; font-weight:600; }
+.lp-contact a:hover{ color:var(--accent) !important; }
+.lp-contact .k{ color:var(--muted); font-size:12.5px; }
+[data-testid="stSidebar"] div.stButton > button{ text-align:center; font-size:15px !important; }
+
+/* Kleinkram */
+[data-testid="stExpander"]{
+  background:var(--paper) !important; border:1px solid var(--line) !important;
+  border-radius:6px !important;
 }
-
-/* ── Fußleiste mit der Eingabe ────────────────────────────────── */
-[data-testid="stBottom"] > div{ background:transparent !important; }
-[data-testid="stBottomBlockContainer"]{ background:transparent !important; padding-bottom:1.2rem; }
-
-/* ── Kleinkram ────────────────────────────────────────────────── */
-[data-testid="stExpander"]{ background:var(--panel) !important;
-  border:1px solid var(--line) !important; border-radius:12px !important; }
-[data-testid="stExpander"] summary{ color:var(--muted) !important; font-size:14px !important; }
+[data-testid="stExpander"] summary{ color:var(--navy) !important; font-size:16px !important; font-weight:600; }
 hr{ border-color:var(--line) !important; }
 #MainMenu, footer{ visibility:hidden; }
 
-@media (prefers-reduced-motion:reduce){
-  *{ animation:none !important; transition:none !important; }
-}
+@media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } }
 </style>
 """, unsafe_allow_html=True)
 
@@ -314,11 +303,11 @@ with st.sidebar:
     st.markdown(
         '<div class="lp-side-label">Lieber direkt sprechen?</div>'
         '<div class="lp-contact">'
-        'Telefonzentrale<br>'
+        '<span class="k">Telefonzentrale</span><br>'
         '<a href="tel:+4978348395-0">+49 (0)7834 8395-0</a><br>'
-        'Allgemein<br>'
+        '<span class="k">Allgemeine Anfragen</span><br>'
         '<a href="mailto:info@leipold.com">info@leipold.com</a><br>'
-        'Bewerbungen<br>'
+        '<span class="k">Bewerbungen</span><br>'
         '<a href="mailto:personal@leipold.com">personal@leipold.com</a>'
         '</div>',
         unsafe_allow_html=True,
