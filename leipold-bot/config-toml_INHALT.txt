@@ -1,0 +1,9 @@
+# Streamlit-Grundfarben. Damit rendert Streamlit selbst schon dunkel —
+# das CSS in app.py ist dann nur noch Feinschliff.
+[theme]
+base = "dark"
+primaryColor = "#2A9DEB"
+backgroundColor = "#0A1220"
+secondaryBackgroundColor = "#111C2E"
+textColor = "#E8EFF7"
+font = "sans serif"
