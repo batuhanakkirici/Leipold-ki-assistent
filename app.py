@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Leipold KI-Assistent",
     page_icon="⚙️",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",   # auf dem Handy zugeklappt, am Rechner offen
 )
 
 # ═══════════════════════════════════════════════════════════════════
@@ -91,6 +91,13 @@ div.stButton > button:hover{
 }
 div.stButton > button:disabled{ opacity:.4; transform:none; }
 
+/* Streamlit macht die Knopf-Container nur so breit wie ihr Text.
+   Damit die Vorschlaege buendig stehen, werden sie auf volle Spaltenbreite
+   gezwungen — am Rechner wie am Handy. */
+[data-testid="stColumn"] [data-testid="stElementContainer"],
+[data-testid="stColumn"] div.stButton{ width:100% !important; }
+[data-testid="stColumn"] [data-testid="stVerticalBlock"]{ align-items:stretch !important; }
+
 /* ── Chatblasen ───────────────────────────────────────────────── */
 [data-testid="stChatMessage"]{
   background:var(--glas) !important; border:1px solid var(--kante);
@@ -144,6 +151,25 @@ div.stButton > button:disabled{ opacity:.4; transform:none; }
 [data-testid="stExpander"] p, [data-testid="stExpander"] li{ color:var(--text) !important; }
 hr{ border-color:var(--kante) !important; }
 #MainMenu, footer{ visibility:hidden; }
+
+/* ── Handy ────────────────────────────────────────────────────── */
+.lp-anruf{ display:none; }
+@media (max-width: 640px){
+  .block-container{ padding-top:1.6rem; }
+  .lp-title{ font-size:30px; }
+  .lp-lead{ font-size:19px; }
+  /* Knoepfe buendig ueber die volle Breite */
+  div.stButton > button{ width:100% !important; min-width:100% !important; }
+  /* Telefonnummer sichtbar, ohne das Menue zu oeffnen */
+  .lp-anruf{
+    display:block; margin:14px 0 4px;
+    font-size:17px; color:var(--text);
+  }
+  .lp-anruf a{
+    color:var(--weiss); font-weight:600; text-decoration:none;
+    border-bottom:2px solid var(--accent); padding-bottom:2px;
+  }
+}
 
 @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } }
 </style>
@@ -325,7 +351,9 @@ st.markdown(
     '<p class="lp-lead">Ihr Ansprechpartner für Präzisionsteile und Karriere — rund um die Uhr.</p>'
     '<p class="lp-sub">Stellen Sie Ihre Frage zu unseren Drehteilen, zur Fertigung oder zu '
     'Ausbildung und Einstieg bei der Carl Leipold GmbH in Wolfach. Sie bekommen sofort '
-    'eine Antwort, auch abends und am Wochenende.</p>',
+    'eine Antwort, auch abends und am Wochenende.</p>'
+    '<p class="lp-anruf">Lieber sprechen? '
+    '<a href="tel:+4978348395-0">+49 (0)7834 8395-0</a></p>',
     unsafe_allow_html=True,
 )
 
